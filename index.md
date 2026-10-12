@@ -4,8 +4,7 @@ title: Home
 ---
 
 <section class="hero-section">
-  <h1>サークル名へようこそ</h1>
-  <p>電子工作キット、アダプタボード、各種技術同人誌を製作・頒布しています。</p>
+  <p>電子工作キット、アダプタボード、各種技術同人誌（予定）を製作・頒布しています。</p>
 </section>
 
 <section class="section">
