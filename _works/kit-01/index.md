@@ -4,7 +4,7 @@ title: "I8-Adapter Ver.1"
 subtitle: "2.54mmピッチ変換用アダプタボード"
 price: "500円"
 status: "頒布中"
-hero_image: "photo.svg"
+hero_image: "photo01.png"
 manual_pdf: "manual.pdf"
 shop_url: "https://booth.pm"
 order: 1
@@ -13,7 +13,7 @@ order: 1
 ## 概要
 ブレッドボードやユニバーサル基板でのプロトタイピングを快適にする、狭ピッチモジュール向けのピッチ変換アダプタ基板です。
 
-![アダプタ基板外観](photo.svg)
+![アダプタ基板外観](photo01.png)
 
 ## 特徴
 - 1.27mmピッチ端子を一般的な2.54mmピッチへ変換
