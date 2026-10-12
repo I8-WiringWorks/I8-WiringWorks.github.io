@@ -1,0 +1,26 @@
+---
+layout: default
+title: Events / 参加イベント一覧
+---
+
+<div class="page-header">
+  <h1>Events / 参加イベント・お品書き</h1>
+  <p>出展予定のイベントやお品書き情報です。</p>
+</div>
+
+<div class="events-list">
+  {% assign sorted_events = site.events | sort: "event_date" | reverse %}
+  {% for event in sorted_events %}
+    <article class="event-card">
+      <div class="event-meta">
+        <time datetime="{{ event.event_date }}">{{ event.event_date }}</time>
+        <span class="event-space">配置: {{ event.space }}</span>
+      </div>
+      <h2 class="event-title"><a href="{{ event.url | relative_url }}">{{ event.title }}</a></h2>
+      <p class="event-venue">場所: {{ event.venue }}</p>
+      {% if event.description %}
+        <p class="event-desc">{{ event.description }}</p>
+      {% endif %}
+    </article>
+  {% endfor %}
+</div>

@@ -1,0 +1,15 @@
+<article class="work-card">
+  {% if work.hero_image %}
+    <a href="{{ work.url | relative_url }}" class="card-thumbnail-link">
+      <img src="{{ work.url | append: work.hero_image | relative_url }}" alt="{{ work.title }}" class="card-thumbnail" loading="lazy">
+    </a>
+  {% endif %}
+  <div class="card-body">
+    <div class="card-meta">
+      <span class="badge status-{{ work.status | slugify }}">{{ work.status }}</span>
+      <span class="card-price">{{ work.price }}</span>
+    </div>
+    <h3 class="card-title"><a href="{{ work.url | relative_url }}">{{ work.title }}</a></h3>
+    <p class="card-desc">{{ work.subtitle }}</p>
+  </div>
+</article>

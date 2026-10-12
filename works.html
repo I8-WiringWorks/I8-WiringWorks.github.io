@@ -1,0 +1,16 @@
+---
+layout: default
+title: Works / 頒布物一覧
+---
+
+<div class="page-header">
+  <h1>Works / 頒布物一覧</h1>
+  <p>過去に製作・頒布した作品および現在頒布中のキット一覧です。</p>
+</div>
+
+<div class="works-grid">
+  {% assign sorted_works = site.works | sort: "order" %}
+  {% for work in sorted_works %}
+    {% include work-card.html %}
+  {% endfor %}
+</div>

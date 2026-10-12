@@ -1,0 +1,39 @@
+---
+layout: default
+---
+
+<article class="work-article">
+  <div class="work-header">
+    <div class="badge-group">
+      <span class="badge status-{{ page.status | slugify }}">{{ page.status }}</span>
+      <span class="badge badge-price">{{ page.price }}</span>
+    </div>
+    <h1 class="work-title">{{ page.title }}</h1>
+    {% if page.subtitle %}
+      <p class="work-subtitle">{{ page.subtitle }}</p>
+    {% endif %}
+  </div>
+
+  {% if page.hero_image %}
+    <div class="work-hero-wrapper">
+      <img src="{{ page.url | append: page.hero_image | relative_url }}" alt="{{ page.title }}" class="work-hero-image">
+    </div>
+  {% endif %}
+
+  <div class="work-content markdown-body">
+    {{ content }}
+  </div>
+
+  <div class="work-actions">
+    {% if page.manual_pdf %}
+      <a class="btn btn-secondary" href="{{ page.url | append: page.manual_pdf | relative_url }}" download>
+        取扱説明書・回路図 (PDF) をDL
+      </a>
+    {% endif %}
+    {% if page.shop_url %}
+      <a class="btn btn-primary" href="{{ page.shop_url }}" target="_blank" rel="noopener">
+        BOOTHで購入・頒布ページへ &rarr;
+      </a>
+    {% endif %}
+  </div>
+</article>
