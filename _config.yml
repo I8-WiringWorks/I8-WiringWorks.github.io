@@ -3,7 +3,7 @@ title: "出雲八岐結線工作室"
 description: "電子工作キット・アダプタ基板・技術同人誌の頒布"
 baseurl: ""
 url: "https://I8-WiringWroks.github.io"
-theme: minima
+theme: cayman
 
 # コレクション設定
 collections:
