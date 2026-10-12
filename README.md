@@ -51,6 +51,6 @@ circle_site_jekyll_template/
 │   ├── css/
 │   │   └── style.css         # レスポンシブ対応のスタイルシート
 │   └── images/
-│       └── ogp.svg
+│       └── images.png
 └── README.md                 # 使い方・デプロイ手順書
 ```
