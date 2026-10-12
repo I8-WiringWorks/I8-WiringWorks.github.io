@@ -6,7 +6,7 @@ price: "1,200円"
 status: "準備中"
 hero_image: "photo02.png"
 shop_url: "https://booth.pm"
-order: 2
+order: 1
 ---
 
 ## 概要

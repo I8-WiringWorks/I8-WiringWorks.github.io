@@ -13,8 +13,8 @@ title: Home
     <a href="{{ '/works/' | relative_url }}" class="more-link">すべて見る &rarr;</a>
   </div>
   <div class="works-grid">
-    {% assign sorted_works = site.works | sort: "order" %}
-    {% for work in sorted_works limit:3 %}
+  {% assign main_works = site.works | where_exp: "item", "item.subpage != true" | sort: "order" %}
+    {% for work in main_works limit:3 %}
       {% include work-card.html %}
     {% endfor %}
   </div>

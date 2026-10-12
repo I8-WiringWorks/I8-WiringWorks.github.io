@@ -11,6 +11,8 @@ title: Works / 頒布物一覧
 <div class="works-grid">
   {% assign sorted_works = site.works | sort: "order" %}
   {% for work in sorted_works %}
-    {% include work-card.html %}
+    {% if work.subpage != true %}
+      {% include work-card.html %}
+    {% endif %}
   {% endfor %}
 </div>

@@ -1,7 +1,9 @@
+<!-- THIS IS _includes/work-card.html -->
 <article class="work-card">
   {% if work.hero_image %}
+    {% assign work_dir = work.url | split: '/' | pop | join: '/' %}
     <a href="{{ work.url | relative_url }}" class="card-thumbnail-link">
-      <img src="{{ work.url | append: work.hero_image | relative_url }}" alt="{{ work.title }}" class="card-thumbnail" loading="lazy">
+      <img src="{{ work_dir }}/{{ work.hero_image | relative_url }}" alt="{{ work.title }}" class="card-thumbnail" loading="lazy">
     </a>
   {% endif %}
   <div class="card-body">

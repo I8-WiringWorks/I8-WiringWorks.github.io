@@ -2,6 +2,8 @@
 layout: default
 ---
 
+<!-- THIS IS _layouts/work.html -->
+{% assign page_dir = page.url | split: '/' | pop | join: '/' %}
 <article class="work-article">
   <div class="work-header">
     <div class="badge-group">
@@ -16,7 +18,7 @@ layout: default
 
   {% if page.hero_image %}
     <div class="work-hero-wrapper">
-      <img src="{{ page.url | append: page.hero_image | relative_url }}" alt="{{ page.title }}" class="work-hero-image">
+      <img src="{{ page_dir }}/{{ page.hero_image | relative_url }}" alt="{{ page.title }}" class="work-hero-image">
     </div>
   {% endif %}
 
