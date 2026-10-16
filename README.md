@@ -2,6 +2,10 @@
 
 GitHub Pagesの標準Jekyll環境で動作する、同人サークル向けのWebサイトテンプレートです。
 
+## 公開先
+
+https://i8-wiringworks.github.io
+
 ## フォルダ構成の特徴
 - 作品ごとに `_works/<作品フォルダ>/` を作成し、その中に `index.md`、画像（`photo.svg`/`photo.jpg`）、説明書（`manual.pdf`）を同梱して自己完結管理できます。
 - 全体レイアウトやスタイルはルートの `_layouts/`、`_includes/`、`assets/` で一元管理されています。
