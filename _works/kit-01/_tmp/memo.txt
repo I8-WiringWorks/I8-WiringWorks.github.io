@@ -1,0 +1,10 @@
+AT
+AT+WFSCAN
+
+AT+WFJAPA=SSID,password
+AT+WFSTAT
+AT+NWHTCH=http://httpbin.org/get,get
+
+# 接続断
+AT+WFQAP
+AT+WFJAPA=Xperia Ace_a1dc,5b34ae636620

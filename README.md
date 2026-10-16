@@ -14,6 +14,16 @@ GitHub Pagesの標準Jekyll環境で動作する、同人サークル向けのWe
    - ユーザーサイト (`<user>.github.io`) の場合: `baseurl: ""`
    - プロジェクトサイト (`<user>.github.io/<repo>`) の場合: `baseurl: "/<repo>"`
 
+## ローカルでの確認手順
+
+```
+gem install jekyell
+jekyll serve --livereload
+```
+
+注意: _config.yml などの設定ファイル自体の変更はライブリロードの対象外となるため、設定変更時は一度 Ctrl + C でサーバーを停止してから再起動してください。
+
+
 ## ディレクトリ構成
 
 ```

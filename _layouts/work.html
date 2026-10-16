@@ -1,15 +1,20 @@
 ---
 layout: default
+shop_list:
+  switch_science: ["SWITCH SCIENCEで購入"]
+  booth: ["BOOTHで購入"]
 ---
 
 <!-- THIS IS _layouts/work.html -->
-{% assign page_dir = page.url | split: '/' | pop | join: '/' %}
+{% assign page_dir = page.url | split: '/' | pop | join: '/' | relative_url %}
 <article class="work-article">
   <div class="work-header">
+    {% if page.subpage != true %}
     <div class="badge-group">
       <span class="badge status-{{ page.status | slugify }}">{{ page.status }}</span>
       <span class="badge badge-price">{{ page.price }}</span>
     </div>
+    {% endif %}
     <h1 class="work-title">{{ page.title }}</h1>
     {% if page.subtitle %}
       <p class="work-subtitle">{{ page.subtitle }}</p>
@@ -18,7 +23,7 @@ layout: default
 
   {% if page.hero_image %}
     <div class="work-hero-wrapper">
-      <img src="{{ page_dir }}/{{ page.hero_image | relative_url }}" alt="{{ page.title }}" class="work-hero-image">
+      <img src="{{ page_dir }}/{{ page.hero_image }}" alt="{{ page.title }}" class="work-hero-image">
     </div>
   {% endif %}
 
@@ -27,15 +32,18 @@ layout: default
   </div>
 
   <div class="work-actions">
-    {% if page.manual_pdf %}
-      <a class="btn btn-secondary" href="{{ page.url | append: page.manual_pdf | relative_url }}" download>
-        取扱説明書・回路図 (PDF) をDL
+    {% for item in page.download_files %}
+      <a class="btn btn-secondary" href="{{ page_dir }}/{{ item.file }}" download>
+	{{ item.title }}
       </a>
-    {% endif %}
-    {% if page.shop_url %}
-      <a class="btn btn-primary" href="{{ page.shop_url }}" target="_blank" rel="noopener">
-        BOOTHで購入・頒布ページへ &rarr;
+    {% endfor %}
+    {% for item in page.shop_url %}
+      {% assign key = item[0] %}
+      {% assign url = item[1] %}
+      <a class="btn btn-primary" href="{{ url }}" target="_blank"
+	 rel="noopener">
+	{{ layout.shop_list[key][0] }}&rarr;
       </a>
-    {% endif %}
+    {% endfor %}
   </div>
 </article>

@@ -20,3 +20,12 @@ kramdown:
   input: GFM
   hard_wrap: true
   syntax_highlighter: rouge
+
+# 除外ファイル,ディレクトリ
+exclude:
+  - README.md
+  - _templates
+  - Gemfile
+  - Gemfile.lock
+  - "**/#*"
+  - "**/*~"

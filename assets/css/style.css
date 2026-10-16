@@ -281,6 +281,9 @@ a:hover {
   gap: 1rem;
   flex-wrap: wrap;
 }
+.work-content pre {
+  margin: 1rem 0rem 1rem 0.5rem;
+}
 
 /* Markdown typography */
 .markdown-body h2 {
