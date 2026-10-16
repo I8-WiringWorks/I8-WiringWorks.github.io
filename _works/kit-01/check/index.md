@@ -65,7 +65,7 @@ RTC switched to XTAL
 
 以下の手順で確認します。
 
-１．Arduino IDE を使って以下のプログラムを記述します。
+1. Arduino IDE を使って以下のプログラムを記述します。
 
 ```c++
 void setup() {
@@ -86,10 +86,11 @@ void loop() {
 }
 ```
 
-２．まだ WiFiボードを Arduino に装着せずにプログラムを書き込みます。
-３．一旦 USBケーブルを抜き、WiFiボードを Arduino へ装着します。
-４．USBケーブルを接続し、IDEのシリアルモニタを 115200 baudに設定します。
-５．以下のように `AT` および `OK` と数秒おきに表示されるのを確認します。
+2. まだ WiFiボードを Arduino に装着せずにプログラムを書き込みます。
+3. 一旦 USBケーブルを抜き、WiFiボードを Arduino へ装着します。
+4. USBケーブルを接続し、IDEのシリアルモニタを 115200 baudに設定します。
+5. 以下のように `AT` および `OK` と数秒おきに表示されるのを確認します。
+{:start="2"}
 
 ![Arduino IDE screenshot](scrn_arduino_ide.png)
 
@@ -100,8 +101,9 @@ void loop() {
 
 [RBoard](https://www.sjc-inc.co.jp/service/rboard) を使用して、動作確認する方法です。
 
-１．WiFiボードをRBoardへ装着します。
-２．RBoardへ以下のプログラムを書き込みます。
+1. WiFiボードをRBoardへ装着します。
+2. RBoardへ以下のプログラムを書き込みます。
+
 ```ruby
 #
 # USB UART <-> Grove UART
@@ -140,10 +142,11 @@ while true
 end
 ```
 
-３．PCでシリアルターミナルソフト(e.g. teraterm) を起動し、19200bpsにセットします。
-４．ターミナルソフトから、ATと入力します。
+3. PCでシリアルターミナルソフト(e.g. teraterm) を起動し、19200bpsにセットします。
+4. ターミナルソフトから、ATと入力します。
 　　入力時には、画面には何も表示されないですが、それで正常です。
-５．エンターを押すと、`OK` と表示されます。
+5. エンターを押すと、`OK` と表示されます。
+{:start="3"}
 
 以上で、UARTで接続ができ、ATコマンドを認識していることが確認できました。
 

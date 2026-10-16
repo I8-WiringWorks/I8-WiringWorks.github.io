@@ -86,6 +86,24 @@ a:hover {
   width: 100%;
   flex: 1;
 }
+.main-container ul,
+.main-container ol {
+  padding-left: 2rem;
+  list-style-position: outside;
+}
+.main-container h1 {
+}
+.main-container h2 {
+  margin-top: 1.5rem;
+}
+.main-container pre {
+  margin: 1rem 0rem 1rem 0.5rem;
+}
+.main-container p code {
+  background-color: #eee;
+  border-right: 0.3rem solid #eee;
+  border-left: 0.3rem solid #eee;
+}
 
 .hero-section {
   padding: 3rem 0;
@@ -280,9 +298,6 @@ a:hover {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-}
-.work-content pre {
-  margin: 1rem 0rem 1rem 0.5rem;
 }
 
 /* Markdown typography */
