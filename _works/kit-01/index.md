@@ -38,10 +38,12 @@ Arduino UNO 互換機 (Seeeduino Lotus)に取り付けたところ
 
 | 項目 | 仕様 | 備考 |
 | :--- | :--- | :-- |
-| 利用モジュール | Renesas DA16200 | [https://www.renesas.com/ja/products/da16200](https://www.renesas.com/ja/products/da16200)
+| 搭載モジュール | Renesas DA16200 | [https://www.renesas.com/ja/products/da16200](https://www.renesas.com/ja/products/da16200)
 | 外形寸法 | 53mm x 68mm |  |
 | 電源 | 3.3 〜 5V  |  |
 | マイコンとの接続 | UART もしくは SPI | ソルダージャンパーおよびファームウェアによる排他使用<br>出荷時はUART設定 |
+
+![ピンアサイン](img_pin_assign.png)
 
 
 ## 取り付けについて
