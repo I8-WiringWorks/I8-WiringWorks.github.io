@@ -99,7 +99,8 @@ a:hover {
 .main-container pre {
   margin: 1rem 0rem 1rem 0.5rem;
 }
-.main-container p code {
+.main-container p code,
+.main-container li code {
   background-color: #eee;
   border-right: 0.3rem solid #eee;
   border-left: 0.3rem solid #eee;

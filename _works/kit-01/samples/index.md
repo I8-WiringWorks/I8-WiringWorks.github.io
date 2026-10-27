@@ -5,6 +5,10 @@ subtitle: "Arduino UNO ピン互換 WiFi 拡張ボード"
 subpage: true
 ---
 
-## サンプルプログラム
+## サンプルプログラム UART
 
-準備中
+* [Arduino UNO UART](arduino_uart.html)
+* Arduino UNO SPI　（準備中）
+* RBoard (mruby/c) UART （準備中）
+* RBoard (mruby/c) SPI （準備中）
+
