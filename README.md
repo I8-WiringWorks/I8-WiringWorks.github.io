@@ -25,6 +25,8 @@ gem install jekyell
 jekyll serve --livereload
 ```
 
+http://127.0.0.1:4000/ へ、アクセスする。
+
 注意: _config.yml などの設定ファイル自体の変更はライブリロードの対象外となるため、設定変更時は一度 Ctrl + C でサーバーを停止してから再起動してください。
 
 
