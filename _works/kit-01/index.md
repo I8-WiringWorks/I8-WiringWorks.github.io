@@ -3,11 +3,10 @@ layout: work
 title: "DA16200 WiFi Shield"
 subtitle: "Arduino UNO ピン互換 WiFi 拡張ボード"
 price: "5,800円"
-status: "準備中"
+status: "販売中"
 hero_image: "img_top_640.jpeg"
-shop_url_PREPARED:
-  switch_science: "https://www.switch-science.com"
-  booth: "https://booth.pm"
+shop_url:
+  switch_science: "https://www.switch-science.com/products/11499"
 order: 1
 ---
 
