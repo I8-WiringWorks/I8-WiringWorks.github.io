@@ -62,7 +62,7 @@ Arduino UNO 互換機 (Seeeduino Lotus)に取り付けたところ
 ## 技術資料
 
 * [動作確認](check)
-* [回路図](schema)
 * [アクセスポイントへの接続](connect_ap)
-* [サンプルコード](samples)
 * [SPI利用方法（ファームウェア書き込み）](use_spi)
+* [サンプルコード](samples)
+* [回路図](schema)
