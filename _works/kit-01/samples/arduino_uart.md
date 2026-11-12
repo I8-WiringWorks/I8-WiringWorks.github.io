@@ -5,16 +5,17 @@ subtitle: "Arduino UNO ピン互換 WiFi 拡張ボード"
 subpage: true
 ---
 
-## サンプルプログラム Arduino UNO UART
+## サンプルコード Arduino UNO UART
 
 ### 準備
 
-* 利便性と信頼性向上のため、AltSoftSerial を使います。
-  ライブラリマネージャで、AltSoftSerial を導入します。
-* AltSoftSerialは、TxD, RxD のピン配置が固定です。
-  D0-TxD, D1-RxDのランド間をつないでいるラインをPカッター等でカットし、D8-TxD, D9-TxD間をジャンパー線で接続してください。
-* それでも DA16200標準の 115200bpsでは取りこぼしなどが起こる場合は、あらかじめ DA16200のボーレートを 9600bps 等に落としてから試してください。ボーレートを9600bpsに設定する ATコマンドは、`ATB 9600` です。
+* デバッグ用に高ボーレートで出力するため、AltSoftSerial を使います。
+  ライブラリマネージャで、AltSoftSerial を導入してください。
+* AltSoftSerialは、TxD=D9, RxD=D8 のピン配置が固定です。
+* DA16200標準の 115200bps に合わせて、多くのデータをデバッグ出力に転送する場合は、デバッグ出力への取りこぼしが発生します。これが問題になる場合は、DA16200側のボーレートを 57600bps 等に落としてから試してください。
+ボーレートを 57600bpsに設定する ATコマンドは、`ATB 57600` です。
 * DA16200は、[アクセスポイントへの接続](../connect_ap)ページを参考に、APへ接続した状態にしておいてください。
+* ArduinoUNOへプログラムを書き込む時には、WiFi Shield を外した状態で書き込んでください。付けたままだと、UARTが干渉して書き込みが失敗します。
 
 ### プログラム
 
@@ -28,25 +29,25 @@ subpage: true
 ```c++
 #include <AltSoftSerial.h>
 
-// Arduino UNO: Rx=D8, Tx=D9（固定）
-AltSoftSerial wifiSerial;
+// Arduino UNO: Rx=D8, Tx=D9（固定）をデバッグ用シリアルとして使用
+AltSoftSerial debugSerial;
 
 // ATコマンド送信とレスポンス待機のヘルパー関数
 bool sendCommand(const char* cmd, const char* expected, unsigned long timeoutMs) {
-  Serial.print(F("\n[SEND] "));
-  Serial.println(cmd);
+  debugSerial.print(F("\n[SEND] "));
+  debugSerial.println(cmd);
 
-  // 送信
-  wifiSerial.println(cmd);
+  // DA16200 (Serial) へ送信
+  Serial.println(cmd);
 
   unsigned long startTime = millis();
   String response = "";
 
   while (millis() - startTime < timeoutMs) {
-    while (wifiSerial.available()) {
-      char c = wifiSerial.read();
+    while (Serial.available()) {
+      char c = Serial.read();
       response += c;
-      Serial.write(c); // デバッグ用に受信内容をシリアルモニタへ出力
+      debugSerial.write(c); // デバッグ用に受信内容を AltSoftSerial へ出力
 
       if (response.indexOf(expected) != -1) {
         return true;
@@ -54,51 +55,53 @@ bool sendCommand(const char* cmd, const char* expected, unsigned long timeoutMs)
     }
   }
 
-  Serial.println(F("\n[TIMEOUT]"));
+  debugSerial.println(F("\n[TIMEOUT]"));
   return false;
 }
 
 void setup() {
+  // DA16200 とのシリアル通信開始（ハードウェアシリアル: D0=Rx, D1=Tx）
   Serial.begin(115200);
   while (!Serial) { ; }
-  Serial.println(F("--- DA16200 HTTP GET Test via AltSoftSerial ---"));
 
-  // DA16200 のシリアル開始
-  wifiSerial.begin(9600);
+  // デバッグ出力用の AltSoftSerial 開始
+  debugSerial.begin(57600);
+  debugSerial.println(F("--- DA16200 HTTP GET Test via Hardware Serial ---"));
+
   delay(1000);
 
   // 1. 通信疎通確認
-  Serial.println(F("\n--- 1. Testing AT ---"));
-  while( sendCommand("AT", "OK", 2000) == false ) {
-    delay( 1000 );
+  debugSerial.println(F("\n--- 1. Testing AT ---"));
+  while (sendCommand("AT", "OK", 2000) == false) {
+    delay(1000);
   }
 
   // 2. Wi-Fi接続確認 (すでにAPへ接続済みであることを前提とします)
   // 未接続の場合は事前に以下のコマンド等で接続しておいてください:
   // AT+WFJAPA=<SSID>,<PASSPHRASE>
-  Serial.println(F("\n--- 2. Checking Wi-Fi Status ---"));
+  debugSerial.println(F("\n--- 2. Checking Wi-Fi Status ---"));
   sendCommand("AT+WFSTA", "OK", 3000);
 
   // 3. HTTP GET リクエストの送信
   // URL: https://httpbin.org/get?param1=111&param2=222
-  Serial.println(F("\n--- 3. Sending HTTPS GET Request ---"));
+  debugSerial.println(F("\n--- 3. Sending HTTPS GET Request ---"));
   const char* getCmd = "AT+NWHTC=https://httpbin.org/get?param1=111&param2=222,get";
-  
+
   // HTTPS通信およびサーバー応答には数秒かかるため、タイムアウトを長め(10秒)に設定
   sendCommand(getCmd, "OK", 10000);
 }
 
 void loop() {
-  // レスポンス本文の非同期通知（+NWHTC: ... など）があればシリアルモニタへそのまま転送
-  if (wifiSerial.available()) {
-    char c = wifiSerial.read();
-    Serial.write(c);
+  // DA16200 (Serial) からの非同期通知があればデバッグ用シリアルへ転送
+  while (Serial.available()) {
+    char c = Serial.read();
+    debugSerial.write(c);
   }
 
-  // シリアルモニタからの手動ATコマンド入力テスト用
-  if (Serial.available()) {
-    char c = Serial.read();
-    wifiSerial.write(c);
+  // デバッグ用シリアルからの手動ATコマンド入力を DA16200 へ転送
+  while (debugSerial.available()) {
+    char c = debugSerial.read();
+    Serial.write(c);
   }
 }
 ```
@@ -106,19 +109,14 @@ void loop() {
 ### 実行結果
 
 ```text
---- DA16200 HTTP GET Test via AltSoftSerial ---
+--- DA16200 HTTP GET Test via Hardware Serial ---
 
 --- 1. Testing AT ---
 
 [SEND] AT
 
-ERROR:-1
-
-[TIMEOUT]
-
-[SEND] AT
-
 OK
+
 --- 2. Checking Wi-Fi Status ---
 
 [SEND] AT+WFSTA
