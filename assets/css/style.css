@@ -99,8 +99,8 @@ a:hover {
 .main-container pre {
   margin: 1rem 0rem 1rem 0.5rem;
 }
-.main-container p code,
-.main-container li code {
+.main-container p > code,
+.main-container li > code {
   background-color: #eee;
   border-right: 0.3rem solid #eee;
   border-left: 0.3rem solid #eee;
@@ -382,4 +382,57 @@ a:hover {
 }
 .copyright {
   margin-bottom: 0.25rem;
+}
+
+/* ===================================================
+   Code block copy button
+=================================================== */
+/* コードブロックのラッパー */
+.code-block-wrapper {
+  position: relative;
+  margin: 1.2rem 0;
+}
+
+.code-block-wrapper pre {
+  margin: 0 !important;
+  padding-top: 2.2rem !important; /* ボタンと被らないよう上部に少し余白を確保 */
+}
+
+/* コピーボタン */
+.copy-code-button {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  color: #000000;
+  background-color: rgba(110, 118, 129, 0.2);
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  z-index: 5;
+}
+
+.copy-code-button:hover {
+  opacity: 1;
+  background-color: rgba(110, 118, 129, 0.4);
+  border-color: rgba(240, 246, 252, 0.3);
+}
+
+/* コピー完了時の状態 */
+.copy-code-button.copied {
+  color: #3fb950;
+  border-color: #3fb950;
+  background-color: rgba(46, 160, 67, 0.15);
+  opacity: 1;
+}
+
+.copy-code-button svg {
+  display: block;
 }
