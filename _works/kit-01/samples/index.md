@@ -8,7 +8,10 @@ subpage: true
 ## サンプルコード UART
 
 * [Arduino UNO UART](arduino_uart.html)
-* Arduino UNO SPI　（準備中）
-* RBoard (mruby/c) UART （準備中）
-* RBoard (mruby/c) SPI （準備中）
+* [RBoard (mruby/c) UART](mrubyc_uart.html)
 
+
+## サンプルコード SPI
+
+* Arduino UNO SPI　（準備中）
+* RBoard (mruby/c) SPI （準備中）
