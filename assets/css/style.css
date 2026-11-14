@@ -98,6 +98,14 @@ a:hover {
 }
 .main-container pre {
   margin: 1rem 0rem 1rem 0.5rem;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.main-container pre code {
+  white-space: pre;
+  word-wrap: normal;
 }
 .main-container p > code,
 .main-container li > code {
