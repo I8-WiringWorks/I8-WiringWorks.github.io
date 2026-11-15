@@ -8,7 +8,7 @@
 #  wifi.connect_ap( "SSID", "KEY", hidden:[true|false] )
 #  pp wifi.stat
 #
-# Updated: 2026/11/14 11:18:59
+# Updated: 2026/11/15 14:35:02
 
 
 class DA16200
@@ -448,7 +448,7 @@ class DA16200
 
       s = gets_with_timeout()
     end
-    s = cdata = remian = nil    # release memory
+    s = cdata = remain = nil    # release memory
 
     # check HTTP status code.
     if http_status
@@ -465,7 +465,7 @@ class DA16200
     while idx = data.index("\n", start)
       line = data[start, idx - start + 1].chomp
       break if line.empty?
-      tag, content = line.split(":")
+      tag, content = line.split(":", 2)
       content&.strip!
       headers[tag] = content  if flag_header
       flag_chunked = true  if tag == "Transfer-Encoding" && content == "chunked"
